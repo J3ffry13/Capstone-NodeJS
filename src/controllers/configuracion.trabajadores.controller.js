@@ -32,22 +32,22 @@ export const obtenerContratos = async (req, res) => {
 };
 
 
-export const crea_edita_Clientes = async (req, res) => {
+export const crea_edita_PersonasTrabajador = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("id", sql.Int, req.body.registroDatos.idCliente)
+      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
       .input("dni", sql.VarChar(50), req.body.registroDatos.dni)
-      .input("nombre", sql.VarChar(250), req.body.registroDatos.nombre)
-      .input("apellido", sql.VarChar(250), req.body.registroDatos.apellido)
-      .input("telefono", sql.VarChar(20), req.body.registroDatos.telefono)
-      .input("direccion", sql.VarChar(250), req.body.registroDatos.direccion)
-      .input("estado", sql.Int, req.body.registroDatos.estadon)
+      .input("nombres", sql.VarChar(250), req.body.registroDatos.nombres)
+      .input("apellidos", sql.VarChar(250), req.body.registroDatos.apellidos)
+      .input("f_nacimiento", sql.VarChar(50), req.body.registroDatos.f_nacimiento)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
-      .input("host", sql.VarChar(50), req.body.registroDatos.host)
-      .execute("[dashboard].[usp_app_crea_edita_elimina_clientes]");
+      .input("urlImagen", sql.VarChar(250), req.body.registroDatos.urlImagen)      
+      .input("tipoDocu", sql.Int, req.body.registroDatos.tipoDocu)
+      .input("trabajadores", sql.VarChar(MAX), req.body.registroDatos.trabajadores)
+      .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
     let data = result.recordset;
     res.status(200).json(data);
   } catch (error) {
@@ -56,16 +56,15 @@ export const crea_edita_Clientes = async (req, res) => {
   }
 };
 
-export const elimina_Clientes = async (req, res) => {
+export const elimina_PersonasTrabajador = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("id", sql.Int, req.body.registroDatos.idCliente)
+      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
-      .input("host", sql.VarChar(50), req.body.registroDatos.host)
-      .execute("[dashboard].[usp_app_crea_edita_elimina_clientes]");
+      .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
     let data = result.recordset;
     console.log(data);
     console.log(req.body);
