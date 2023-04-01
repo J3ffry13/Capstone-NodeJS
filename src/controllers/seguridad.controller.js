@@ -24,16 +24,17 @@ export const login = async (req, res) => {
   }
 }
 
-/*
-try {
-        await pool.connect();
-        const result = await pool.request()
-            .input('Name', req.query.name)
-            .execute(`SearchEmployee`);
-        const employees = result.recordset;
-
-        res.json(employees);
-    } catch (error) {
-        res.status(500).json(error);
-    }
-*/
+export const opbtenerPermisos = async (req, res) => {
+  try {
+    const pool = await getConnection();
+    const result = await pool
+      .request()
+      .input("user", sql.Int, req.body.user)
+      .execute("[seguridad].[usp_app_obtener_permisos]");
+    let data = result.recordset;
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500);
+    res.send(error.message);
+  }
+}
