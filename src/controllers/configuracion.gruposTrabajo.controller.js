@@ -38,14 +38,11 @@ export const crea_edita_Grupo_Trabajo = async (req, res) => {
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
-      .input("dni", sql.VarChar(50), req.body.registroDatos.dni)
-      .input("nombres", sql.VarChar(250), req.body.registroDatos.nombres)
-      .input("apellidos", sql.VarChar(250), req.body.registroDatos.apellidos)
-      .input("f_nacimiento", sql.VarChar(50), req.body.registroDatos.f_nacimiento)
+      .input("idGrupo", sql.Int, req.body.registroDatos.idGrupo)
+      .input("codigo", sql.VarChar(50), req.body.registroDatos.codigo)
+      .input("descripcion", sql.VarChar(250), req.body.registroDatos.descripcion)
+      .input("idSupervisor", sql.VarChar(250), req.body.registroDatos.idSupervisor)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
-      .input("urlImagen", sql.VarChar(250), req.body.registroDatos.urlImagen)      
-      .input("tipoDocu", sql.Int, req.body.registroDatos.tipoDocu)
       .input("trabajadores", sql.VarChar(MAX), req.body.registroDatos.trabajadores)
       .execute("[configuracion].[usp_app_crea_edita_elimina_grupo_trabajo]");
     let data = result.recordset;
@@ -62,7 +59,7 @@ export const elimina_Grupo_Trabajo = async (req, res) => {
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
+      .input("idGrupo", sql.Int, req.body.registroDatos.idGrupo)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
       .execute("[configuracion].[usp_app_crea_edita_elimina_grupo_trabajo]");
     let data = result.recordset;

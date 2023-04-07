@@ -17,6 +17,12 @@ from "../controllers/configuracion.actividades.controller"
 import {listadoGruposTrabajo, obtenerTrabajadores, crea_edita_Grupo_Trabajo,elimina_Grupo_Trabajo} 
 from '../controllers/configuracion.gruposTrabajo.controller'
 
+import {listadoAsignacionLabores, crea_edita_AsignacionLabores, elimina_AsignacionLabores} 
+from '../controllers/procesos.asignacionLabores.controller'
+
+import {obtenerTrabajador, crea_edita_RegistroAsistencia} 
+from '../controllers/asistencia.registroAsistencias.controller'
+
 const router = Router();
 
 /*                  LOGIN                  */
@@ -43,12 +49,23 @@ router.post("/configuracion/obtenerTrabajadores", obtenerTrabajadores);
 router.post("/configuracion/creaeditaGruposTrabajo", crea_edita_Grupo_Trabajo);
 router.put("/configuracion/eliminaGruposTrabajo", elimina_Grupo_Trabajo);
 /*-----------------------------------------*/
+/*                  -----                  */
+/*      PROCESOS - ASIGNACIÓN LABORES      */
+router.post("/procesos/listadoAsignacionLabores", listadoAsignacionLabores);
+router.post("/procesos/crea_edita_AsignacionLabores", crea_edita_AsignacionLabores);
+router.put("/procesos/elimina_AsignacionLabores", elimina_AsignacionLabores);
 
 /*                  -----                  */
 
+
+/*    ASISTENCIAS - REGISTRO ASISTENCIA    */
+router.post("/asistencias/obtenerTrabajador", obtenerTrabajador);
+router.post("/asistencias/creaeditaRedistroAsistencia", crea_edita_RegistroAsistencia);
+/*-----------------------------------------*/
 
 /*                 COMBOS                  */
 router.post("/utils/listadoCombos", listadoCombos);
 
 /*                  -----                  */
 export default router;
+/*IMPLEMENTAR JOBS PARA CONTRATOS Y REGULAR LÑAS ASISTENCIAS XDD */
