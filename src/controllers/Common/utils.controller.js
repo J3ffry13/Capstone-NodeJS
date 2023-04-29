@@ -1,5 +1,5 @@
 import { MAX } from "mssql";
-import { getConnection, sql } from "../database";
+import { getConnection, sql } from "../../database";
 
 
 export const listadoCombos = async (req, res) => {

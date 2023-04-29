@@ -1,4 +1,4 @@
-import { getConnection, querys, sql } from "../database";
+import { getConnection, querys, sql } from "../../database";
 const jwt = require("jsonwebtoken")
 
 /* CREATE TOKEN FOR USE */

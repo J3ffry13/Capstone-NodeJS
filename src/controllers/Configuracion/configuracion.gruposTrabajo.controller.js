@@ -1,14 +1,14 @@
 import { MAX } from "mssql";
-import { getConnection, sql } from "../database";
+import { getConnection, sql } from "../../database";
 
 
-export const listadoTrabajadores = async (req, res) => {
+export const listadoGruposTrabajo = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
-      .input("dni", sql.VarChar(50), req.body.dni)
-      .execute("[configuracion].[usp_app_listado_trabajadores]");
+      // .input("dni", sql.VarChar(50), req.body.dni)
+      .execute("[configuracion].[usp_app_listado_grupo_trabajo]");
     let data = result.recordset;
     res.status(200).json(data);
   } catch (error) {
@@ -16,14 +16,14 @@ export const listadoTrabajadores = async (req, res) => {
     res.send(error.message);
   }
 };
-export const obtenerContratos = async (req, res) => {
+export const obtenerTrabajadores = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
-      .input("idPersona", sql.Int, req.body.dni)
-      .execute("[configuracion].[usp_app_obtener_contratos]");
-    let data = result.recordset;
+      .input("idGrupoTrab", sql.Int, req.body.idGrupo)
+      .execute("[configuracion].[usp_app_obtener_trabajadores]");
+    let data = result.recordsets;
     res.status(200).json(data);
   } catch (error) {
     res.status(500);
@@ -32,22 +32,19 @@ export const obtenerContratos = async (req, res) => {
 };
 
 
-export const crea_edita_PersonasTrabajador = async (req, res) => {
+export const crea_edita_Grupo_Trabajo = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
-      .input("dni", sql.VarChar(50), req.body.registroDatos.dni)
-      .input("nombres", sql.VarChar(250), req.body.registroDatos.nombres)
-      .input("apellidos", sql.VarChar(250), req.body.registroDatos.apellidos)
-      .input("f_nacimiento", sql.VarChar(50), req.body.registroDatos.f_nacimiento)
+      .input("idGrupo", sql.Int, req.body.registroDatos.idGrupo)
+      .input("codigo", sql.VarChar(50), req.body.registroDatos.codigo)
+      .input("descripcion", sql.VarChar(250), req.body.registroDatos.descripcion)
+      .input("idSupervisor", sql.VarChar(250), req.body.registroDatos.idSupervisor)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
-      .input("urlImagen", sql.VarChar(250), req.body.registroDatos.urlImagen)      
-      .input("tipoDocu", sql.Int, req.body.registroDatos.tipoDocu)
       .input("trabajadores", sql.VarChar(MAX), req.body.registroDatos.trabajadores)
-      .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
+      .execute("[configuracion].[usp_app_crea_edita_elimina_grupo_trabajo]");
     let data = result.recordset;
     res.status(200).json(data);
   } catch (error) {
@@ -56,15 +53,15 @@ export const crea_edita_PersonasTrabajador = async (req, res) => {
   }
 };
 
-export const elimina_PersonasTrabajador = async (req, res) => {
+export const elimina_Grupo_Trabajo = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
       .input("accion", sql.Int, req.body.registroDatos.accion)
-      .input("idPersona", sql.Int, req.body.registroDatos.idPersona)
+      .input("idGrupo", sql.Int, req.body.registroDatos.idGrupo)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
-      .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
+      .execute("[configuracion].[usp_app_crea_edita_elimina_grupo_trabajo]");
     let data = result.recordset;
     console.log(data);
     console.log(req.body);

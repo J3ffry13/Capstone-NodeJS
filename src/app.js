@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 const bodyParser    = require('body-parser');
-import productRoutes from "./routes/products.routes";
+import productRoutes from "./routes/aplications.routes";
 import morgan from "morgan";
 
 import config from "./config";

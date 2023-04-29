@@ -2,26 +2,28 @@ import { Router } from "express";
 
 import {
   login, opbtenerPermisos
-} from "../controllers/seguridad.controller";
+} from "../controllers/Seguridad/seguridad.controller";
 
 import {
   listadoCombos
-} from "../controllers/utils.controller";
+} from "../controllers/Common/utils.controller";
 
 import { listadoTrabajadores, obtenerContratos, crea_edita_PersonasTrabajador, elimina_PersonasTrabajador}
-from "../controllers/configuracion.trabajadores.controller"
+from "../controllers/Configuracion/configuracion.trabajadores.controller"
 
 import { listadoActividades, crea_edita_Actividades, elimina_Actividades}
-from "../controllers/configuracion.actividades.controller"
+from "../controllers/Configuracion/configuracion.actividades.controller"
 
 import {listadoGruposTrabajo, obtenerTrabajadores, crea_edita_Grupo_Trabajo,elimina_Grupo_Trabajo} 
-from '../controllers/configuracion.gruposTrabajo.controller'
+from '../controllers/Configuracion/configuracion.gruposTrabajo.controller'
 
 import {listadoAsignacionLabores, crea_edita_AsignacionLabores, elimina_AsignacionLabores} 
-from '../controllers/procesos.asignacionLabores.controller'
+from '../controllers/Procesos/procesos.asignacionLabores.controller'
 
 import {obtenerTrabajador, crea_edita_RegistroAsistencia} 
-from '../controllers/asistencia.registroAsistencias.controller'
+from '../controllers/Asistemcia/asistencia.registroAsistencias.controller'
+import { listadoEgresos, crea_edita_Egresos, elimina_Egresos } from "../controllers/Finanzas/finanzas.egresos.controller";
+import { listadoIngresos, crea_edita_Ingresos, elimina_Ingresos } from "../controllers/Finanzas/finanzas.ingresos.controller";
 
 const router = Router();
 
@@ -54,14 +56,25 @@ router.put("/configuracion/eliminaGruposTrabajo", elimina_Grupo_Trabajo);
 router.post("/procesos/listadoAsignacionLabores", listadoAsignacionLabores);
 router.post("/procesos/crea_edita_AsignacionLabores", crea_edita_AsignacionLabores);
 router.put("/procesos/elimina_AsignacionLabores", elimina_AsignacionLabores);
-
+/*-----------------------------------------*/
 /*                  -----                  */
-
-
 /*    ASISTENCIAS - REGISTRO ASISTENCIA    */
 router.post("/asistencias/obtenerTrabajador", obtenerTrabajador);
 router.post("/asistencias/creaeditaRedistroAsistencia", crea_edita_RegistroAsistencia);
 /*-----------------------------------------*/
+/*                  -----                  */
+/*           FINANZAS - INGRESOS           */
+router.post("/finanzas/listadoIngresos", listadoIngresos);
+router.post("/finanzas/crea_edita_Ingresos", crea_edita_Ingresos);
+router.put("/finanzas/elimina_Ingresos", elimina_Ingresos);
+/*-----------------------------------------*/
+/*                  -----                  */
+/*           FINANZAS - EGRESOS            */
+router.post("/finanzas/listadoEgresos", listadoEgresos);
+router.post("/finanzas/crea_edita_Egresos", crea_edita_Egresos);
+router.put("/finanzas/elimina_Egresos", elimina_Egresos);
+
+
 
 /*                 COMBOS                  */
 router.post("/utils/listadoCombos", listadoCombos);
