@@ -1,5 +1,6 @@
 import { MAX } from "mssql";
 import { getConnection, sql } from "../../database";
+import configMensaje from "./configMensaje";
 
 
 export const listadoTrabajadores = async (req, res) => {
@@ -49,6 +50,9 @@ export const crea_edita_PersonasTrabajador = async (req, res) => {
       .input("trabajadores", sql.VarChar(MAX), req.body.registroDatos.trabajadores)
       .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
     let data = result.recordset;
+    let message = data[0]
+    configMensaje('testcapstone2023@gmail.com', 'TRABAJADORES', message[''] + ' con DNI : ' + req.body.registroDatos.dni)
+    console.log(data);
     res.status(200).json(data);
   } catch (error) {
     res.status(500);
@@ -66,8 +70,6 @@ export const elimina_PersonasTrabajador = async (req, res) => {
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
       .execute("[configuracion].[usp_app_crea_edita_elimina_personas_trabajadores]");
     let data = result.recordset;
-    console.log(data);
-    console.log(req.body);
     res.status(200).json(data);
   } catch (error) {
     res.status(500);

@@ -25,6 +25,8 @@ from '../controllers/Asistemcia/asistencia.registroAsistencias.controller'
 import { listadoEgresos, crea_edita_Egresos, elimina_Egresos } from "../controllers/Finanzas/finanzas.egresos.controller";
 import { listadoIngresos, crea_edita_Ingresos, elimina_Ingresos } from "../controllers/Finanzas/finanzas.ingresos.controller";
 
+import { listadoDashboard } from "../controllers/Reportes/dashboard.controller";
+
 const router = Router();
 
 /*                  LOGIN                  */
@@ -73,7 +75,10 @@ router.put("/finanzas/elimina_Ingresos", elimina_Ingresos);
 router.post("/finanzas/listadoEgresos", listadoEgresos);
 router.post("/finanzas/crea_edita_Egresos", crea_edita_Egresos);
 router.put("/finanzas/elimina_Egresos", elimina_Egresos);
-
+/*-----------------------------------------*/
+/*                  -----                  */
+/*           FINANZAS - INGRESOS           */
+router.get("/reportes/listadoDashboard", listadoDashboard);
 
 
 /*                 COMBOS                  */

@@ -1,13 +1,12 @@
 import { MAX } from "mssql";
 import { getConnection, sql } from "../../database";
+import configMensaje from "../Configuracion/configMensaje";
 
 export const listadoAsignacionLabores = async (req, res) => {
   try {
     const pool = await getConnection();
     const result = await pool
       .request()
-      // .input("grupos", sql.VarChar(250), req.body.grupos)
-      // .input("actividades", sql.VarChar(250), req.body.actividades)
       .execute("[procesos].[usp_app_listado_asignacionLabores]");
     let data = result.recordset;
     res.status(200).json(data);
@@ -34,6 +33,8 @@ export const crea_edita_AsignacionLabores = async (req, res) => {
       .input("accion", sql.Int, req.body.registroDatos.accion)
       .execute("[procesos].[usp_app_crea_edita_elimina_asignacionLabores]");
     let data = result.recordset;
+    let message = data[0] == undefined ? '' : data[0]
+    configMensaje('testcapstone2023@gmail.com', 'ASIGNACION DE LABORES', message[''] + ' con DESCRIPCION : ' + req.body.registroDatos.descripcion + ' y DIRECCION: ' + req.body.registroDatos.direccion)
     res.status(200).json(data);
   } catch (error) {
     res.status(500);
