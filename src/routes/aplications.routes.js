@@ -25,7 +25,7 @@ from '../controllers/Asistemcia/asistencia.registroAsistencias.controller'
 import { listadoEgresos, crea_edita_Egresos, elimina_Egresos } from "../controllers/Finanzas/finanzas.egresos.controller";
 import { listadoIngresos, crea_edita_Ingresos, elimina_Ingresos } from "../controllers/Finanzas/finanzas.ingresos.controller";
 
-import { listadoDashboard } from "../controllers/Reportes/dashboard.controller";
+import { listadoDashboard, listadoReporteActividadesxTrabajador, listadoReporteAsistencias, listadoReporteHorasSemanales, listadoReporteIngresosVSEgresos } from "../controllers/Reportes/reportes.controller";
 
 const router = Router();
 
@@ -77,8 +77,12 @@ router.post("/finanzas/crea_edita_Egresos", crea_edita_Egresos);
 router.put("/finanzas/elimina_Egresos", elimina_Egresos);
 /*-----------------------------------------*/
 /*                  -----                  */
-/*           FINANZAS - INGRESOS           */
+/*             REPORTES - TODO             */
 router.get("/reportes/listadoDashboard", listadoDashboard);
+router.post("/reportes/listadoReporteIngresosVSEgresos", listadoReporteIngresosVSEgresos);
+router.post("/reportes/listadoReporteAsistencias", listadoReporteAsistencias);
+router.post("/reportes/listadoReporteHorasSemanales", listadoReporteHorasSemanales);
+router.post("/reportes/listadoReporteActividadesxTrabajador", listadoReporteActividadesxTrabajador);
 
 
 /*                 COMBOS                  */
