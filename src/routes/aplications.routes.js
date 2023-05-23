@@ -26,6 +26,8 @@ import { listadoEgresos, crea_edita_Egresos, elimina_Egresos } from "../controll
 import { listadoIngresos, crea_edita_Ingresos, elimina_Ingresos } from "../controllers/Finanzas/finanzas.ingresos.controller";
 
 import { listadoDashboard, listadoReporteActividadesxTrabajador, listadoReporteAsistencias, listadoReporteHorasSemanales, listadoReporteIngresosVSEgresos } from "../controllers/Reportes/reportes.controller";
+import { crea_edita_PerfilWeb, elimina_PerfilWeb, listadoPerfilesWEB, obtenerPerfiles } from "../controllers/Seguridad/perfilWeb.controller";
+import { crea_edita_Usuario, elimina_Usuario, listadoUsuarios, obtenerUsuario } from "../controllers/Seguridad/usuarios.controller";
 
 const router = Router();
 
@@ -83,7 +85,20 @@ router.post("/reportes/listadoReporteIngresosVSEgresos", listadoReporteIngresosV
 router.post("/reportes/listadoReporteAsistencias", listadoReporteAsistencias);
 router.post("/reportes/listadoReporteHorasSemanales", listadoReporteHorasSemanales);
 router.post("/reportes/listadoReporteActividadesxTrabajador", listadoReporteActividadesxTrabajador);
-
+/*-----------------------------------------*/
+/*                  -----                  */
+/*        SEGURIDAD - PERFILES WEB         */
+router.post("/seguridad/listadoPerfilesWEB", listadoPerfilesWEB);
+router.post("/seguridad/obtenerPerfiles", obtenerPerfiles);
+router.post("/seguridad/crea_edita_PerfilWeb", crea_edita_PerfilWeb);
+router.put("/seguridad/elimina_PerfilWeb", elimina_PerfilWeb);
+/*-----------------------------------------*/
+/*                  -----                  */
+/*           SEGURIDAD - USUARIOS          */
+router.post("/seguridad/listadoUsuarios", listadoUsuarios);
+router.post("/seguridad/obtenerUsuario", obtenerUsuario);
+router.post("/seguridad/crea_edita_Usuario", crea_edita_Usuario);
+router.put("/seguridad/elimina_Usuario", elimina_Usuario);
 
 /*                 COMBOS                  */
 router.post("/utils/listadoCombos", listadoCombos);
