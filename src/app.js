@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 
-const bodyParser    = require('body-parser');
+const bodyParser = require("body-parser");
 import productRoutes from "./routes/aplications.routes";
 import morgan from "morgan";
 
@@ -11,7 +11,7 @@ var { expressjwt: expressJWT } = require("express-jwt");
 
 const app = express();
 
-const secret = 'Hola4@dsf'
+const secret = "Hola4@dsf";
 
 // settings
 app.set("port", config.port);
@@ -21,13 +21,22 @@ app.use(cors());
 app.use(morgan("dev"));
 // app.use(express.urlencoded({ extended: false }));
 
-app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
 app.use(express.json());
 
-app.use(expressJWT({ secret: secret ,
-    algorithms: ["HS256"],}).unless({ path: ["/api/login"] }));
+app.use(
+  expressJWT({ secret: secret, algorithms: ["HS256"] }).unless({
+    path: ["/api/login","/api/loginMovil"],
+  })
+);
 
-// Routes 
+// app.use(
+//   expressJWT({ secret: secret, algorithms: ["HS256"] }).unless({
+//     path: ["/api/loginMovil"],
+//   })
+// );
+
+// Routes
 app.use("/api", productRoutes);
 
 export default app;

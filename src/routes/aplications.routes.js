@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import {
-  login, opbtenerPermisos
+  login, loginMovil, opbtenerPermisos
 } from "../controllers/Seguridad/seguridad.controller";
 
 import {
@@ -33,6 +33,7 @@ const router = Router();
 
 /*                  LOGIN                  */
 router.post("/login", login);
+router.post("/loginMovil", loginMovil);
 router.post("/obtenerPermisos", opbtenerPermisos);
 /*-----------------------------------------*/
 /*                  -----                  */
