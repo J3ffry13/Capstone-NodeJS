@@ -29,6 +29,8 @@ export const crea_edita_AsignacionLabores = async (req, res) => {
       .input("inicio", sql.VarChar(50), req.body.registroDatos.inicio)
       .input("final", sql.VarChar(50), req.body.registroDatos.final)
       .input("backgroundColor", sql.VarChar(50), req.body.registroDatos.backgroundColor)
+      .input("latitud", sql.VarChar(20), req.body.registroDatos.latitud)
+      .input("longitud", sql.VarChar(20), req.body.registroDatos.longitud)
       .input("login", sql.VarChar(50), req.body.registroDatos.login)
       .input("accion", sql.Int, req.body.registroDatos.accion)
       .execute("[procesos].[usp_app_crea_edita_elimina_asignacionLabores]");

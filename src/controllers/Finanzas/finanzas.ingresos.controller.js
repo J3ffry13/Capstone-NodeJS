@@ -8,8 +8,8 @@ export const listadoIngresos = async (req, res) => {
       .input("fechaIni", sql.VarChar(20), req.body.fechaIni)
       .input("fechaFin", sql.VarChar(20), req.body.fechaFin)
       .execute("[finanzas].[usp_app_listado_ingresos]");
-    let data = result.recordset;
-    res.status(200).json(data);
+      let data = result.recordsets;
+      res.status(200).json(data);
   } catch (error) {
     res.status(500);
     res.send(error.message);
